@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const TarabuFXApp());
+  runApp(const TarabuFxApp());
 }
 
-class TarabuFXApp extends StatelessWidget {
-  const TarabuFXApp({super.key});
+class TarabuFxApp extends StatelessWidget {
+  const TarabuFxApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,31 +13,31 @@ class TarabuFXApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'TARABU FX',
       theme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: const Color(0xFF07111F),
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFFD6AE4B),
           brightness: Brightness.dark,
         ),
-        useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const MainScreen(),
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
 
   final pages = const [
-    DashboardPage(),
+    HomePage(),
     SignalsPage(),
     AcademyPage(),
     AccountPage(),
@@ -46,11 +46,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: pages[selectedIndex]),
+      body: SafeArea(
+        child: pages[selectedIndex],
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         onDestinationSelected: (index) {
-          setState(() => selectedIndex = index);
+          setState(() {
+            selectedIndex = index;
+          });
         },
         destinations: const [
           NavigationDestination(
@@ -79,6 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+// ---------------- BRAND HEADER ----------------
+
 class BrandHeader extends StatelessWidget {
   const BrandHeader({super.key});
 
@@ -103,8 +109,8 @@ class BrandHeader extends StatelessWidget {
               'TF',
               style: TextStyle(
                 color: Color(0xFF07111F),
-                fontSize: 18,
                 fontWeight: FontWeight.w900,
+                fontSize: 18,
               ),
             ),
           ),
@@ -128,8 +134,10 @@ class BrandHeader extends StatelessWidget {
   }
 }
 
-class DashboardPage extends StatelessWidget {
-  const DashboardPage({super.key});
+// ---------------- HOME ----------------
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -138,23 +146,28 @@ class DashboardPage extends StatelessWidget {
       children: [
         const BrandHeader(),
         const SizedBox(height: 28),
+
         const Text(
           'Trade Smarter.\nLearn. Grow.',
           style: TextStyle(
-            fontSize: 31,
+            fontSize: 32,
             fontWeight: FontWeight.w900,
             height: 1.05,
           ),
         ),
+
         const SizedBox(height: 10),
+
         Text(
           'Your TARABU FX trading and education hub.',
           style: TextStyle(
-            color: Colors.white.withOpacity(.65),
+            color: Colors.white.withOpacity(0.65),
             fontSize: 15,
           ),
         ),
+
         const SizedBox(height: 24),
+
         Container(
           padding: const EdgeInsets.all(22),
           decoration: BoxDecoration(
@@ -166,8 +179,8 @@ class DashboardPage extends StatelessWidget {
               ],
             ),
             border: Border.all(
-              color: const Color(0xFFD6AE4B),
-              width: .6,
+              color: Color(0xFFD6AE4B),
+              width: 0.6,
             ),
           ),
           child: Column(
@@ -176,9 +189,11 @@ class DashboardPage extends StatelessWidget {
               const Icon(
                 Icons.trending_up,
                 color: Color(0xFFD6AE4B),
-                size: 36,
+                size: 38,
               ),
-              const SizedBox(height: 15),
+
+              const SizedBox(height: 14),
+
               const Text(
                 'Professional Trading Hub',
                 style: TextStyle(
@@ -186,15 +201,19 @@ class DashboardPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+
               const SizedBox(height: 8),
+
               Text(
                 'Signals, education, premium membership and trading technology.',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(.70),
+                  color: Colors.white.withOpacity(0.70),
                   height: 1.4,
                 ),
               ),
+
               const SizedBox(height: 18),
+
               FilledButton(
                 onPressed: () {},
                 child: const Text('Explore TARABU FX'),
@@ -202,7 +221,9 @@ class DashboardPage extends StatelessWidget {
             ],
           ),
         ),
+
         const SizedBox(height: 24),
+
         const Text(
           'Latest Signal',
           style: TextStyle(
@@ -210,7 +231,9 @@ class DashboardPage extends StatelessWidget {
             fontWeight: FontWeight.w800,
           ),
         ),
+
         const SizedBox(height: 12),
+
         const SignalCard(
           pair: 'XAUUSD',
           direction: 'BUY',
@@ -218,7 +241,9 @@ class DashboardPage extends StatelessWidget {
           sl: 'DEMO',
           tp: 'DEMO',
         ),
+
         const SizedBox(height: 24),
+
         const Text(
           'Quick Access',
           style: TextStyle(
@@ -226,7 +251,9 @@ class DashboardPage extends StatelessWidget {
             fontWeight: FontWeight.w800,
           ),
         ),
+
         const SizedBox(height: 12),
+
         Row(
           children: const [
             Expanded(
@@ -244,7 +271,9 @@ class DashboardPage extends StatelessWidget {
             ),
           ],
         ),
+
         const SizedBox(height: 12),
+
         Row(
           children: const [
             Expanded(
@@ -267,6 +296,8 @@ class DashboardPage extends StatelessWidget {
   }
 }
 
+// ---------------- SIGNALS ----------------
+
 class SignalsPage extends StatelessWidget {
   const SignalsPage({super.key});
 
@@ -276,7 +307,9 @@ class SignalsPage extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       children: const [
         BrandHeader(),
+
         SizedBox(height: 24),
+
         Text(
           'Forex Signals',
           style: TextStyle(
@@ -284,12 +317,18 @@ class SignalsPage extends StatelessWidget {
             fontWeight: FontWeight.w900,
           ),
         ),
+
         SizedBox(height: 8),
+
         Text(
-          'Demo signals — live market data will be connected later.',
-          style: TextStyle(color: Colors.white60),
+          'Demo signals. Live market data will be connected later.',
+          style: TextStyle(
+            color: Colors.white60,
+          ),
         ),
+
         SizedBox(height: 20),
+
         SignalCard(
           pair: 'XAUUSD',
           direction: 'BUY',
@@ -297,10 +336,22 @@ class SignalsPage extends StatelessWidget {
           sl: 'DEMO',
           tp: 'DEMO',
         ),
+
         SizedBox(height: 14),
+
         SignalCard(
           pair: 'EURUSD',
           direction: 'SELL',
+          entry: 'DEMO',
+          sl: 'DEMO',
+          tp: 'DEMO',
+        ),
+
+        SizedBox(height: 14),
+
+        SignalCard(
+          pair: 'GBPUSD',
+          direction: 'BUY',
           entry: 'DEMO',
           sl: 'DEMO',
           tp: 'DEMO',
@@ -309,6 +360,8 @@ class SignalsPage extends StatelessWidget {
     );
   }
 }
+
+// ---------------- ACADEMY ----------------
 
 class AcademyPage extends StatelessWidget {
   const AcademyPage({super.key});
@@ -326,7 +379,9 @@ class AcademyPage extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       children: [
         const BrandHeader(),
+
         const SizedBox(height: 24),
+
         const Text(
           'TARABU FX Academy',
           style: TextStyle(
@@ -334,12 +389,18 @@ class AcademyPage extends StatelessWidget {
             fontWeight: FontWeight.w900,
           ),
         ),
+
         const SizedBox(height: 8),
+
         const Text(
           'Learn the foundations of professional trading.',
-          style: TextStyle(color: Colors.white60),
+          style: TextStyle(
+            color: Colors.white60,
+          ),
         ),
+
         const SizedBox(height: 18),
+
         ...courses.map(
           (course) => Card(
             child: ListTile(
@@ -352,7 +413,9 @@ class AcademyPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle: const Text('Course module'),
+              subtitle: const Text(
+                'Course module • Coming soon',
+              ),
               trailing: const Icon(Icons.chevron_right),
               onTap: () {},
             ),
@@ -363,6 +426,8 @@ class AcademyPage extends StatelessWidget {
   }
 }
 
+// ---------------- ACCOUNT ----------------
+
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
 
@@ -372,14 +437,21 @@ class AccountPage extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       children: [
         const BrandHeader(),
+
         const SizedBox(height: 30),
+
         const Center(
           child: CircleAvatar(
             radius: 40,
-            child: Icon(Icons.person, size: 40),
+            child: Icon(
+              Icons.person,
+              size: 40,
+            ),
           ),
         ),
+
         const SizedBox(height: 12),
+
         const Center(
           child: Text(
             'TARABU FX Member',
@@ -389,31 +461,44 @@ class AccountPage extends StatelessWidget {
             ),
           ),
         ),
+
         const SizedBox(height: 25),
-        accountTile(Icons.workspace_premium, 'Premium Membership'),
-        accountTile(Icons.credit_card, 'Payments'),
-        accountTile(Icons.smart_toy, 'MT5 / BOT'),
-        accountTile(Icons.notifications, 'Notifications'),
-        accountTile(Icons.support_agent, 'Support'),
-        accountTile(Icons.settings, 'Settings'),
+
+        AccountTile(
+          icon: Icons.workspace_premium,
+          title: 'Premium Membership',
+        ),
+
+        AccountTile(
+          icon: Icons.credit_card,
+          title: 'Payments',
+        ),
+
+        AccountTile(
+          icon: Icons.smart_toy,
+          title: 'MT5 / BOT',
+        ),
+
+        AccountTile(
+          icon: Icons.notifications,
+          title: 'Notifications',
+        ),
+
+        AccountTile(
+          icon: Icons.support_agent,
+          title: 'Support',
+        ),
+
+        AccountTile(
+          icon: Icons.settings,
+          title: 'Settings',
+        ),
       ],
     );
   }
-
-  Widget accountTile(IconData icon, String title) {
-    return Card(
-      child: ListTile(
-        leading: Icon(
-          icon,
-          color: const Color(0xFFD6AE4B),
-        ),
-        title: Text(title),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () {},
-      ),
-    );
-  }
 }
+
+// ---------------- SIGNAL CARD ----------------
 
 class SignalCard extends StatelessWidget {
   final String pair;
@@ -449,7 +534,9 @@ class SignalCard extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                   ),
                 ),
+
                 const Spacer(),
+
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
@@ -458,8 +545,8 @@ class SignalCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: isBuy
-                        ? Colors.green.withOpacity(.18)
-                        : Colors.red.withOpacity(.18),
+                        ? Colors.green.withOpacity(0.18)
+                        : Colors.red.withOpacity(0.18),
                   ),
                   child: Text(
                     direction,
@@ -473,13 +560,24 @@ class SignalCard extends StatelessWidget {
                 ),
               ],
             ),
+
             const SizedBox(height: 16),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                metric('ENTRY', entry),
-                metric('SL', sl),
-                metric('TP', tp),
+                Metric(
+                  label: 'ENTRY',
+                  value: entry,
+                ),
+                Metric(
+                  label: 'SL',
+                  value: sl,
+                ),
+                Metric(
+                  label: 'TP',
+                  value: tp,
+                ),
               ],
             ),
           ],
@@ -487,8 +585,22 @@ class SignalCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget metric(String label, String value) {
+// ---------------- METRIC ----------------
+
+class Metric extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const Metric({
+    super.key,
+    required this.label,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -499,7 +611,9 @@ class SignalCard extends StatelessWidget {
             color: Colors.white54,
           ),
         ),
+
         const SizedBox(height: 4),
+
         Text(
           value,
           style: const TextStyle(
@@ -510,6 +624,8 @@ class SignalCard extends StatelessWidget {
     );
   }
 }
+
+// ---------------- QUICK CARD ----------------
 
 class QuickCard extends StatelessWidget {
   final IconData icon;
@@ -531,9 +647,11 @@ class QuickCard extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: const Color(0xFFD6AE4B),
+              color: Color(0xFFD6AE4B),
             ),
+
             const SizedBox(height: 12),
+
             Text(
               title,
               style: const TextStyle(
@@ -542,6 +660,34 @@ class QuickCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// ---------------- ACCOUNT TILE ----------------
+
+class AccountTile extends StatelessWidget {
+  final IconData icon;
+  final String title;
+
+  const AccountTile({
+    super.key,
+    required this.icon,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: Icon(
+          icon,
+          color: Color(0xFFD6AE4B),
+        ),
+        title: Text(title),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () {},
       ),
     );
   }
